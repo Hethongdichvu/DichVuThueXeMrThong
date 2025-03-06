@@ -1,56 +1,71 @@
 document.addEventListener("DOMContentLoaded", function () {
     const slides = document.querySelector(".slides");
-    const dots = document.querySelectorAll(".dot");
+    const slideItems = document.querySelectorAll(".slide");
+    const dotsContainer = document.querySelector(".dots");
     let currentIndex = 0;
-    const totalSlides = dots.length;
+    const totalSlides = slideItems.length;
 
-    if (!slides || !dots.length) {
-        console.error("Không tìm thấy slider hoặc dots!");
-        return;
-    }
+    // Tạo dots động dựa trên số lượng slide
+    slideItems.forEach((_, index) => {
+        const dot = document.createElement("span");
+        dot.classList.add("dot");
+        if (index === 0) dot.classList.add("active");
+        dotsContainer.appendChild(dot);
+    });
+
+    const dots = document.querySelectorAll(".dot");
 
     function showSlide(index) {
         if (index >= totalSlides) index = 0;
         if (index < 0) index = totalSlides - 1;
-        slides.style.transform = `translateX(-${index * (100 / totalSlides)}%)`;
+        slides.style.transform = `translateX(-${index * 100}%)`;
         dots.forEach(dot => dot.classList.remove("active"));
         dots[index].classList.add("active");
         currentIndex = index;
     }
 
     dots.forEach((dot, index) => {
-        dot.addEventListener("click", function () {
-            showSlide(index);
-        });
+        dot.addEventListener("click", () => showSlide(index));
     });
 
-    // Tự động chuyển slide sau mỗi 4 giây
-    let slideInterval = setInterval(function () {
-        showSlide(currentIndex + 1);
-    }, 4000);
+    // Tự động chuyển slide
+    let slideInterval = setInterval(() => showSlide(currentIndex + 1), 4000);
 
-    // Tạm dừng slider khi tương tác trên mobile
-    slides.addEventListener("touchstart", function () {
-        clearInterval(slideInterval);
-    });
-    slides.addEventListener("touchend", function () {
-        slideInterval = setInterval(function () {
-            showSlide(currentIndex + 1);
-        }, 4000);
+    // Tạm dừng khi tương tác
+    slides.addEventListener("touchstart", () => clearInterval(slideInterval));
+    slides.addEventListener("touchend", () => {
+        slideInterval = setInterval(() => showSlide(currentIndex + 1), 4000);
     });
 
-    // Tối ưu hiệu suất bằng cách chỉ chạy slider khi hiển thị
+    // Tối ưu hiệu suất
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (!entry.isIntersecting) {
-                clearInterval(slideInterval);
-            } else {
-                slideInterval = setInterval(function () {
-                    showSlide(currentIndex + 1);
-                }, 4000);
-            }
+            if (!entry.isIntersecting) clearInterval(slideInterval);
+            else slideInterval = setInterval(() => showSlide(currentIndex + 1), 4000);
         });
     }, { threshold: 0.1 });
 
     observer.observe(slides);
+});
+// Gallery Slider
+const gallerySlides = document.querySelector(".gallery-slides");
+const gallerySlideItems = document.querySelectorAll(".gallery-slide");
+const prevBtn = document.querySelector(".gallery-prev");
+const nextBtn = document.querySelector(".gallery-next");
+let galleryIndex = 0;
+const totalGallerySlides = gallerySlideItems.length;
+
+function showGallerySlide(index) {
+    if (index >= totalGallerySlides) index = 0;
+    if (index < 0) index = totalGallerySlides - 1;
+    gallerySlides.style.transform = `translateX(-${index * 100}%)`;
+    galleryIndex = index;
+}
+
+prevBtn.addEventListener("click", () => {
+    showGallerySlide(galleryIndex - 1);
+});
+
+nextBtn.addEventListener("click", () => {
+    showGallerySlide(galleryIndex + 1);
 });
