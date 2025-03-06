@@ -1,0 +1,406 @@
+/* Reset mặc định */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background: linear-gradient(to right, #1A2B4F, #2E4372); /* Gradient từ Xanh Navy đậm đến nhạt hơn */
+    color: #3cff00; /* Màu chữ trắng để nổi trên nền tối */
+    line-height: 1.6;
+    overflow-x: hidden;
+    padding: 10px;
+}
+
+/* Header */
+header {
+    background: linear-gradient(135deg, #1A2B4F, #2E4372); /* Xanh Navy gradient */
+    color: #FFD700; /* Vàng cho chữ */
+    padding: 15px;
+    text-align: center;
+    border-radius: 0 0 20px 20px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    animation: fadeInHeader 0.8s ease-out forwards;
+    will-change: opacity, transform;
+}
+
+@keyframes fadeInHeader {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.hero {
+    text-align: center;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hero img {
+    max-width: 300px;
+    width: 100%;
+    height: auto;
+    filter: brightness(1.2);
+    border: 2px solid #FFD700; /* Viền vàng cho logo */
+    border-radius: 10px;
+}
+
+.hero h1 {
+    font-size: 2.2em; /* Tăng kích thước chữ tiêu đề */
+    margin-top: 10px;
+    font-weight: bold;
+    color: #FFD700; /* Vàng cho tiêu đề */
+    text-shadow: 0 0 8px rgba(255, 215, 0, 0.8);
+    animation: textGlow 2s infinite ease-in-out;
+}
+
+.hero p {
+    font-size: 1.2em; /* Tăng kích thước chữ đoạn văn */
+    color: #fff; /* Trắng cho đoạn văn */
+    margin-top: 5px;
+}
+
+/* Slider */
+.slider {
+    position: relative;
+    width: 100%;
+    height: 400px; /* Chiều cao slider */
+    overflow: hidden;
+    margin-top: 15px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border: 1px solid #FFD700; /* Viền vàng cho slider */
+}
+
+.slides {
+    display: flex;
+    width: 400%; /* 4 ảnh, mỗi ảnh chiếm 25% */
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+    will-change: transform; /* Tối ưu hiệu ứng trên mobile */
+}
+
+.slide {
+    width: 25%; /* Mỗi ảnh chiếm 25% tổng chiều rộng */
+    height: 100%;
+    object-fit: contain; /* Đảm bảo ảnh hiển thị đầy đủ */
+}
+
+/* Dots */
+.dots {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+}
+
+.dot {
+    width: 12px; /* Tăng kích thước chấm */
+    height: 12px;
+    background: #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.dot.active {
+    background: #FFD700; /* Vàng cho dot đang hoạt động */
+}
+
+/* Description Section */
+.description {
+    background: #fff; /* Nền trắng để nổi bật trên body */
+    border-radius: 15px;
+    padding: 20px;
+    margin: 20px 0;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    color: #1A2B4F; /* Xanh Navy cho chữ */
+}
+
+.description h2 {
+    font-size: 2em;
+    color: #1A2B4F;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.description p {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.description ul {
+    list-style: none;
+    margin-bottom: 20px;
+}
+
+.description ul li {
+    font-size: 1.1em;
+    margin: 5px 0;
+    color: #444;
+}
+
+/* Business Card */
+.business-card {
+    background: #F5F6F5;
+    border: 1px solid #FFD700;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 400px;
+    margin: 20px auto;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+.business-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.business-card img {
+    max-width: 250px;
+    width: 100%;
+    height: auto;
+    border: 2px solid #ffd700;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.business-card h3 {
+    font-size: 1.5em;
+    color: #1A2B4F;
+    margin: 10px 0;
+}
+
+.business-card p {
+    font-size: 1.2em;
+    color: #333;
+    margin: 5px 0;
+}
+
+.business-card .phone-with-arrow {
+    position: relative;
+    padding-left: 25px; /* Tạo không gian cho mũi tên */
+}
+
+.business-card .phone-with-arrow::before {
+    content: "➜"; /* Mũi tên Unicode */
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #73ff00; /* Màu vàng cho mũi tên */
+    font-size: 1.5em;
+}
+
+.business-card a {
+    color: #1100ff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.business-card a:hover {
+    text-decoration: underline;
+    color: #FFC107;
+}
+
+/* Product Section */
+.products {
+    background: #00ffea;
+    border-radius: 15px;
+    padding: 15px;
+    margin-top: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    animation: fade-up 0.8s ease-out forwards;
+}
+
+.products h2 {
+    font-size: 2em;
+    color: #1A2B4F;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.product-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.product-item {
+    background: #F5F6F5;
+    border-radius: 10px;
+    padding: 10px;
+    width: 280px;
+    text-align: center;
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    will-change: transform;
+}
+
+.product-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.product-item img {
+    max-width: 100%;
+    border-radius: 8px;
+    border: 1px solid #FFD700;
+}
+
+.product-item h3 {
+    font-size: 1.4em;
+    margin: 8px 0;
+    color: #1A2B4F;
+}
+
+.price {
+    font-size: 1.2em;
+    color: #FFD700;
+    font-weight: bold;
+}
+
+/* Button Group */
+.button-group {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 18px;
+    background: linear-gradient(135deg, #1A2B4F, #2E4372);
+    color: #FFD700;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1.1em;
+    transition: background 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+.btn:hover {
+    background: linear-gradient(135deg, #2E4372, #1A2B4F);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.book-btn {
+    background: linear-gradient(135deg, #FFD700, #FFC107);
+    color: #1A2B4F;
+}
+
+.book-btn:hover {
+    background: linear-gradient(135deg, #FFC107, #FFA000);
+}
+
+/* Contact Section */
+.contact {
+    background: #1A2B4F;
+    color: #FFD700;
+    padding: 20px;
+    text-align: center;
+    border-radius: 15px;
+    margin-top: 20px;
+}
+
+.contact h2 {
+    font-size: 2em;
+    margin-bottom: 15px;
+}
+
+.contact-card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+.contact-card p {
+    font-size: 1.2em;
+    margin: 5px 0;
+}
+
+.contact-card a {
+    color: #FFD700;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.contact-card a:hover {
+    text-decoration: underline;
+    color: #FFC107;
+}
+
+/* Hiệu ứng xuất hiện */
+@keyframes fade-down {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-in-left {
+    from { opacity: 0; transform: translateX(-30px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fade-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes zoom-in {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes textGlow {
+    0%, 100% { text-shadow: 0 0 8px rgba(255, 215, 0, 0.8); }
+    50% { text-shadow: 0 0 15px rgba(255, 215, 0, 1); }
+}
+
+.fade-down { animation: fade-down 0.8s ease-out; }
+.slide-in-left { animation: slide-in-left 0.8s ease-out; }
+.fade-in { animation: fade-up 0.8s ease-out; }
+.fade-up { animation: fade-up 0.8s ease-out; }
+.zoom-in { animation: zoom-in 0.8s ease-out; }
+
+/* Responsive tối ưu cho điện thoại */
+@media (max-width: 768px) {
+    header { padding: 10px; }
+    .slider { height: 250px; }
+    .hero { margin-top: 5px; }
+    .hero img { max-width: 200px; }
+    .hero h1 { font-size: 1.5em; margin-top: 5px; }
+    .hero p { font-size: 0.9em; margin-top: 3px; }
+    .description { padding: 15px; margin: 15px 0; }
+    .description h2 { font-size: 1.5em; }
+    .description p { font-size: 1em; }
+    .description ul li { font-size: 0.9em; }
+    .products { padding: 10px; margin-top: 10px; }
+    .products h2 { font-size: 1.5em; }
+    .product-list { gap: 8px; }
+    .product-item { width: 90%; padding: 8px; }
+    .product-item h3 { font-size: 1.2em; }
+    .price { font-size: 1em; }
+    .btn { padding: 8px 12px; font-size: 0.9em; }
+    .button-group { flex-direction: column; gap: 5px; }
+    .contact { padding: 15px; }
+    .contact h2 { font-size: 1.5em; }
+    .contact-card p { font-size: 1em; }
+    .business-card { max-width: 90%; padding: 15px; }
+    .business-card img { max-width: 200px; }
+    .business-card h3 { font-size: 1.3em; }
+    .business-card p { font-size: 1em; }
+    .business-card .phone-with-arrow::before { font-size: 1.2em; }
+}
